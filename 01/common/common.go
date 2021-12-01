@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-func CountDepthDiffs(depths []int) int {
+func CountDepthIncreases(depths []int) int {
 	lastDepth := -1
 	diffs := 0
 	for _, depth := range depths {
