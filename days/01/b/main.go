@@ -3,18 +3,14 @@ package main
 import (
 	"fmt"
 
-	"github.com/martin-svanberg-northvolt/aoc21/01/common"
+	"github.com/martin-svanberg-northvolt/aoc21/days/01/common"
 	"github.com/martin-svanberg-northvolt/aoc21/lib"
 )
 
 func main() {
-	fmt.Println(solution())
-}
-
-func solution() int {
 	depths := common.ReadDepths(lib.GetFixturePath("input"))
 	windows := windowed(depths)
-	return common.CountDepthIncreases(windows)
+	fmt.Print(common.CountDepthIncreases(windows))
 }
 
 func windowed(depths []int) []int {
