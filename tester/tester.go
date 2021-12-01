@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -22,6 +23,12 @@ func main() {
 			if base == "answer" {
 				dir := filepath.Dir(path)
 				cmd := exec.Command("go", "run", "./"+dir)
+				stdin, err := cmd.StdinPipe()
+				if err != nil {
+					log.Fatal(err)
+				}
+				io.WriteString(stdin, lib.FileToString("./"+dir+"/input"))
+				stdin.Close()
 				stdout, err := cmd.Output()
 				if err != nil {
 					log.Fatal(err)

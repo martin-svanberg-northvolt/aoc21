@@ -8,6 +8,6 @@ import (
 )
 
 func main() {
-	depths := common.ReadDepths(lib.GetFixturePath("input"))
+	depths := common.LinesToInts(lib.GetInput())
 	fmt.Print(common.CountDepthIncreases(depths))
 }

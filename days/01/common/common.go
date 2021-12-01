@@ -1,9 +1,7 @@
 package common
 
 import (
-	"bufio"
 	"log"
-	"os"
 	"strconv"
 )
 
@@ -26,26 +24,14 @@ func diffDepths(prev int, next int) int {
 	return 0
 }
 
-func ReadDepths(path string) []int {
-	file, err := os.Open(path)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	depths := make([]int, 0, 1000)
-	for scanner.Scan() {
-		line := scanner.Text()
+func LinesToInts(lines []string) []int {
+	ints := make([]int, 0)
+	for _, line := range lines {
 		depth, err := strconv.Atoi(line)
 		if err != nil {
 			log.Fatal(err)
 		}
-		depths = append(depths, depth)
+		ints = append(ints, depth)
 	}
-
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
-	}
-	return depths
+	return ints
 }

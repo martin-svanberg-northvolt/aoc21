@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	depths := common.ReadDepths(lib.GetFixturePath("input"))
+	depths := common.LinesToInts(lib.GetInput())
 	windows := windowed(depths)
 	fmt.Print(common.CountDepthIncreases(windows))
 }
