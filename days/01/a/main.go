@@ -19,7 +19,6 @@ func countDepthIncreases(depths []int) int {
 			if lastDepth < depth {
 				out += 1
 			}
-			out += 0
 		}
 		lastDepth = depth
 	}
