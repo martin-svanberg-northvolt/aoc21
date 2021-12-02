@@ -3,14 +3,13 @@ package main
 import (
 	"fmt"
 
-	"github.com/martin-svanberg-northvolt/aoc21/days/01/common"
 	"github.com/martin-svanberg-northvolt/aoc21/lib"
 )
 
 func main() {
-	depths := common.LinesToInts(lib.GetInput())
+	depths := lib.StringsToInts(lib.GetInput())
 	windows := windowed(depths)
-	fmt.Print(common.CountDepthIncreases(windows))
+	fmt.Print(countDepthIncreases(windows))
 }
 
 func windowed(depths []int) []int {
@@ -20,6 +19,21 @@ func windowed(depths []int) []int {
 			continue
 		}
 		out = append(out, depths[i-2]+depths[i-1]+depth)
+	}
+	return out
+}
+
+func countDepthIncreases(depths []int) int {
+	lastDepth := -1
+	out := 0
+	for _, depth := range depths {
+		if lastDepth != -1 {
+			if lastDepth < depth {
+				out += 1
+			}
+			out += 0
+		}
+		lastDepth = depth
 	}
 	return out
 }

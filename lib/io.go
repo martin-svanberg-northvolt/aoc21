@@ -2,9 +2,11 @@ package lib
 
 import (
 	"bufio"
+	"io"
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 )
 
 func FileToString(path string) string {
@@ -17,16 +19,13 @@ func FileToString(path string) string {
 
 func GetInput() []string {
 	out := make([]string, 0)
-	scanner := bufio.NewScanner(os.Stdin)
+	reader := bufio.NewReader(os.Stdin)
 	for {
-		scanner.Scan()
-		text := scanner.Text()
-		if len(text) != 0 {
-			out = append(out, text)
-		} else {
+		line, err := reader.ReadString('\n')
+		out = append(out, strings.TrimSpace(line))
+		if err == io.EOF {
 			break
 		}
-
 	}
 	return out
 }
