@@ -36,20 +36,20 @@ func main() {
 			},
 		}
 		lines = append(lines, curLine)
-		width = max(max(width, curLine.start.x), curLine.end.x)
-		height = max(max(height, curLine.start.y), curLine.end.y)
+		width = lib.Max(lib.Max(width, curLine.start.x), curLine.end.x)
+		height = lib.Max(lib.Max(height, curLine.start.y), curLine.end.y)
 	}
 	grid := make([]int, width*height)
 	for _, line := range lines {
 		if line.start.x == line.end.x {
-			start := min(line.start.y, line.end.y)
-			end := max(line.start.y, line.end.y)
+			start := lib.Min(line.start.y, line.end.y)
+			end := lib.Max(line.start.y, line.end.y)
 			for i := start; i <= end; i++ {
 				grid[i*height+line.start.x] += 1
 			}
 		} else if line.start.y == line.end.y {
-			start := min(line.start.x, line.end.x)
-			end := max(line.start.x, line.end.x)
+			start := lib.Min(line.start.x, line.end.x)
+			end := lib.Max(line.start.x, line.end.x)
 			for i := start; i <= end; i++ {
 				grid[line.start.y*height+i] += 1
 			}
@@ -67,18 +67,4 @@ func main() {
 func mustAtoi(s []byte) int {
 	i, _ := strconv.Atoi(string(s))
 	return i
-}
-
-func max(x, y int) int {
-	if x < y {
-		return y
-	}
-	return x
-}
-
-func min(x, y int) int {
-	if x < y {
-		return x
-	}
-	return y
 }

@@ -29,23 +29,16 @@ func isLowPoint(input [][]int, x, y int) bool {
 	lowest := math.MaxInt
 	this := input[y][x]
 	if x > 0 {
-		lowest = min(lowest, input[y][x-1])
+		lowest = lib.Min(lowest, input[y][x-1])
 	}
 	if x < len(input[0])-1 {
-		lowest = min(lowest, input[y][x+1])
+		lowest = lib.Min(lowest, input[y][x+1])
 	}
 	if y > 0 {
-		lowest = min(lowest, input[y-1][x])
+		lowest = lib.Min(lowest, input[y-1][x])
 	}
 	if y < len(input)-1 {
-		lowest = min(lowest, input[y+1][x])
+		lowest = lib.Min(lowest, input[y+1][x])
 	}
 	return this < lowest
-}
-
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
 }

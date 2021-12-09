@@ -35,16 +35,16 @@ func isLowPoint(heights [][]int, x, y int) bool {
 	lowest := math.MaxInt
 	this := heights[y][x]
 	if x > 0 {
-		lowest = min(lowest, heights[y][x-1])
+		lowest = lib.Min(lowest, heights[y][x-1])
 	}
 	if x < len(heights[0])-1 {
-		lowest = min(lowest, heights[y][x+1])
+		lowest = lib.Min(lowest, heights[y][x+1])
 	}
 	if y > 0 {
-		lowest = min(lowest, heights[y-1][x])
+		lowest = lib.Min(lowest, heights[y-1][x])
 	}
 	if y < len(heights)-1 {
-		lowest = min(lowest, heights[y+1][x])
+		lowest = lib.Min(lowest, heights[y+1][x])
 	}
 	return this < lowest
 }
@@ -82,11 +82,4 @@ func countBasinSize(input [][]int, x, y int) (size int) {
 		}
 	}
 	return
-}
-
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
 }

@@ -36,15 +36,15 @@ func main() {
 			},
 		}
 		lines = append(lines, curLine)
-		width = max(max(width, curLine.start.x), curLine.end.x)
-		height = max(max(height, curLine.start.y), curLine.end.y)
+		width = lib.Max(lib.Max(width, curLine.start.x), curLine.end.x)
+		height = lib.Max(lib.Max(height, curLine.start.y), curLine.end.y)
 	}
 	grid := make([]int, (width+1)*(height+1))
 	for _, line := range lines {
-		startY := min(line.start.y, line.end.y)
-		endY := max(line.start.y, line.end.y)
-		startX := min(line.start.x, line.end.x)
-		endX := max(line.start.x, line.end.x)
+		startY := lib.Min(line.start.y, line.end.y)
+		endY := lib.Max(line.start.y, line.end.y)
+		startX := lib.Min(line.start.x, line.end.x)
+		endX := lib.Max(line.start.x, line.end.x)
 		length := endX - startX
 		if line.start.x == line.end.x {
 			length = endY - startY
@@ -67,20 +67,6 @@ func main() {
 func mustAtoi(s []byte) int {
 	i, _ := strconv.Atoi(string(s))
 	return i
-}
-
-func max(x, y int) int {
-	if x < y {
-		return y
-	}
-	return x
-}
-
-func min(x, y int) int {
-	if x < y {
-		return x
-	}
-	return y
 }
 
 func interpolate(s int, e int, t int) int {
