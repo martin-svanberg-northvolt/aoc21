@@ -14,7 +14,6 @@ type point struct {
 func main() {
 	input := lib.GetInput()
 	energies := make([][]int, 0)
-	flashes := 0
 	for _, row := range input {
 		energies = append(energies, lib.StringsToInts(strings.Split(row, "")))
 	}
@@ -33,7 +32,6 @@ func main() {
 					point := point{X: x, Y: y}
 					if energy > 9 && !flashedAt[point] {
 						incAdjacent(energies, x, y)
-						flashes += 1
 						flashedAt[point] = true
 						anyFlashes = true
 					}
