@@ -34,6 +34,7 @@ func main() {
 	visible := make(map[point]bool)
 	for _, fold := range folds {
 		for p := range dots {
+			visible[p] = false
 			visible[reflect(p, fold)] = true
 		}
 		dots = visible
