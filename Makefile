@@ -8,7 +8,10 @@ new:
 run:
 	@go run days/$(day)/$(part)/main.go < days/$(day)/input
 
+try:
+	@go run days/$(day)/$(part)/main.go < days/$(day)/test-input
+
 test:
 	@go run ./tester
 
-.PHONY: fetch run test
+.PHONY: new run test

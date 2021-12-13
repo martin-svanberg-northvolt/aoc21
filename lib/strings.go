@@ -16,3 +16,8 @@ func StringsToInts(lines []string) []int {
 	}
 	return ints
 }
+
+func MustAtoi(s string) (out int) {
+	out, _ = strconv.Atoi(s)
+	return
+}
