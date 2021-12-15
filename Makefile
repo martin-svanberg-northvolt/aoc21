@@ -14,4 +14,4 @@ try:
 test:
 	@go run ./tester
 
-.PHONY: new run test
+.PHONY: new run try test
